@@ -1,0 +1,5 @@
+# Ignore model file
+model.h5
+
+# Ignore remained.txt
+remained.txt

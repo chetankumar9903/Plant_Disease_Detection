@@ -1,0 +1,55 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plant Disease Detection</title>
+</head>
+<body>
+    <h1>Plant Disease Detection</h1>
+    <p>Just upload your plant's leaf image and get predictions if the plant is healthy or not.</p>
+    <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <input type="submit" value="Upload and Predict">
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Plant Disease Detection</h1>
+        <p>Upload your plant's leaf image to predict if the plant is healthy or not.</p>
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <div class="file-upload">
+                <input type="file" name="file" id="file" accept="image/*" required>
+                <label for="file">Choose a file</label>
+            </div>
+            <div id="image-preview"></div>
+            <button type="submit">Upload and Predict</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.classList.add('preview-image');
+                const imagePreview = document.getElementById('image-preview');
+                imagePreview.innerHTML = '';
+                imagePreview.appendChild(img);
+            }
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
